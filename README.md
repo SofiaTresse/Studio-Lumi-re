@@ -28,10 +28,11 @@ Depois acesse `http://localhost:8000`.
 
 ## O que já está funcionando
 
-- Menu fixo com versão mobile em tela cheia (fecha com `Esc` e trava o fundo).
+- Menu fixo com drawer lateral no mobile (fecha com `Esc`, no fundo escurecido ou ao escolher um link) e bloqueio da rolagem de fundo.
+- Barra fixa de ações no mobile com atalhos para “Agendar horário” e WhatsApp, que se esconde na seção de agendamento.
 - Animações suaves de entrada ao rolar, com respeito a `prefers-reduced-motion`.
 - Contadores animados na seção “Sobre”.
-- Galeria com lightbox acessível (abre ao clicar, fecha com `Esc` ou no fundo).
+- Galeria com lightbox acessível (abre ao clicar, fecha com `Esc` ou no fundo) e rolagem horizontal com encaixe no mobile.
 - Carrossel de depoimentos com setas, indicadores e rotação automática (pausa ao passar o mouse ou focar).
 - Botões “Reservar” dos serviços que já pré-selecionam o serviço no formulário.
 - Agendamento validado no navegador:

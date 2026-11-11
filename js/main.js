@@ -34,7 +34,13 @@
      ---------------------------------------------------------------------- */
   const nav = $("#primaryNav");
   const navToggle = $("#navToggle");
-  const pageRegions = [$("main"), $(".site-footer"), $(".whatsapp-float")].filter(Boolean);
+  const navBackdrop = $("#navBackdrop");
+  const pageRegions = [
+    $("main"),
+    $(".site-footer"),
+    $(".whatsapp-float"),
+    $(".mobile-bar"),
+  ].filter(Boolean);
 
   const closeNav = () => {
     nav.classList.remove("is-open");
@@ -69,6 +75,8 @@
     if (event.target.closest("a")) closeNav();
   });
 
+  if (navBackdrop) navBackdrop.addEventListener("click", closeNav);
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && nav.classList.contains("is-open")) {
       closeNav();
@@ -79,6 +87,37 @@
   window.matchMedia("(min-width: 901px)").addEventListener("change", (event) => {
     if (event.matches) closeNav();
   });
+
+  /* ----------------------------------------------------------------------
+     Barra de ações mobile
+     ---------------------------------------------------------------------- */
+  const mobileBar = $("#mobileBar");
+
+  if (mobileBar) {
+    const bookingSection = $("#agendamento");
+    let bookingVisible = false;
+
+    const updateMobileBar = () => {
+      const shouldShow = window.scrollY > 420 && !bookingVisible;
+      mobileBar.classList.toggle("is-visible", shouldShow);
+      mobileBar.classList.toggle("is-away", bookingVisible);
+    };
+
+    window.addEventListener("scroll", updateMobileBar, { passive: true });
+
+    if (bookingSection && "IntersectionObserver" in window) {
+      const bookingObserver = new IntersectionObserver(
+        (entries) => {
+          bookingVisible = entries[0].isIntersecting;
+          updateMobileBar();
+        },
+        { threshold: 0.12 }
+      );
+      bookingObserver.observe(bookingSection);
+    }
+
+    updateMobileBar();
+  }
 
   /* ----------------------------------------------------------------------
      Reveal ao rolar
